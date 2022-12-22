@@ -1,5 +1,6 @@
 package com.example.bevss.entity;
 
+import com.example.bevss.enums.Role;
 import lombok.*;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class UserEntity {
     private String password;
 
     @Column(name = "role")
-    private Boolean role;
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
