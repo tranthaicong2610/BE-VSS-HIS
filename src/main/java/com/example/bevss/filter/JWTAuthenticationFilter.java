@@ -1,4 +1,4 @@
-package com.example.bevss.config;
+package com.example.bevss.filter;
 
 import com.example.bevss.service.TokenAuthenticationService;
 import org.springframework.security.core.Authentication;
