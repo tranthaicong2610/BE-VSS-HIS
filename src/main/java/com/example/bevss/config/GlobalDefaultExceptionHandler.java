@@ -1,5 +1,6 @@
 package com.example.bevss.config;
 
+import com.example.bevss.dto.ErrorDTO;
 import com.example.bevss.exception.CommonException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseEntity<String> handleCommonException(Exception ex) {
+    public ResponseEntity<ErrorDTO> handleCommonException(Exception ex) {
         logger.error("-------> Handle Other Common exception.... {0}", ex);
-        String message = null;
+        String message;
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         if (ex instanceof MultipartException) {
@@ -56,7 +57,7 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
             message = ex.getMessage();
         }
 
-        return new ResponseEntity<>(message, new HttpHeaders(), status);
+        return new ResponseEntity<>(new ErrorDTO(message), new HttpHeaders(), status);
     }
 
     @Override

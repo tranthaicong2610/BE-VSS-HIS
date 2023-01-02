@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -23,5 +25,9 @@ public class UserService implements UserDetailsService {
             throw new CommonException(MessageCodeConstaint.SE001);
         }
         return new CustomUserDetails(user);
+    }
+
+    public List<UserEntity> getAll() {
+        return userRepository.findAll();
     }
 }
