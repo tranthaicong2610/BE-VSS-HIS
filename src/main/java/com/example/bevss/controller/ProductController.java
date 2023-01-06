@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    ProductEntity getDetail(@RequestParam Long id){
+    ProductEntity getDetail(@PathVariable Long id){
         return productService.getDetail(id);
     }
 

@@ -1,9 +1,6 @@
 package com.example.bevss.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,6 +15,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
