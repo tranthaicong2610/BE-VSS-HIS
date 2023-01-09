@@ -53,6 +53,18 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
                 }
             }
             status = e.getStatus() != null ? e.getStatus() : HttpStatus.BAD_REQUEST;
+        } else if (ex.getCause() instanceof  CommonException) {
+            CommonException e = (CommonException) ex.getCause();
+            try {
+                message = messageSource.getMessage(e.getCode(), e.getArgs(), Locale.ROOT);
+            } catch (Exception exception) {
+                if (e.getArgs() != null && e.getArgs().length > 0 && e.getArgs()[0] instanceof String) {
+                    message = String.valueOf(e.getArgs()[0]);
+                } else {
+                    message = e.getCode();
+                }
+            }
+            status = e.getStatus() != null ? e.getStatus() : HttpStatus.BAD_REQUEST;
         } else {
             message = ex.getMessage();
         }
